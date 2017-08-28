@@ -77,6 +77,7 @@ export default class YOUR_PROJECT_NAME extends Component {
   }
 }
 
+process.nextTick=setImmediate
 const styles = StyleSheet.create({
   container: {
     flex: 1,
