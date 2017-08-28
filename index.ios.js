@@ -47,10 +47,11 @@ export default class YOUR_PROJECT_NAME extends Component {
         this.setState({imageSource: response.uri.replace('file://', '')});
         app.models.predict(Clarifai.GENERAL_MODEL, {base64:response.data}).then(
         (res) => {
-          console.log('Clarifai response = ', res);
+          console.log('Clarifai response agaiiiinnnn = ', res.outputs.length);
           let tags = '';
-          for (let i = 0; i<res.data.outputs[0].data.concepts.length; i++) {
-            tags += res.data.outputs[0].data.concepts[i].name + ' ';
+          console.log('res data outpus ', res.outputs[0].data.concepts)
+          for (let i = 0; i<res.outputs[0].data.concepts.length; i++) {
+            tags += res.outputs[0].data.concepts[i].name + ' ';
           }
           this.setState({tagText:tags});
         },
@@ -62,6 +63,7 @@ export default class YOUR_PROJECT_NAME extends Component {
   }
   
   render() {
+    console.log('TAGS IN RENDER', this.state.tagText)
     return (
       <View style={styles.container}>
         <TouchableHighlight onPress={this.selectImage.bind(this)}>
